@@ -1,6 +1,6 @@
 package anton.myshareit.booking;
 
-import anton.myshareit.item.Item;
+import anton.myshareit.item.entity.Item;
 import anton.myshareit.user.entity.User;
 import lombok.*;
 

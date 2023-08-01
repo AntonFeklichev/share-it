@@ -1,6 +1,6 @@
 package anton.myshareit.item.dtoMappers;
 
-import anton.myshareit.item.Item;
+import anton.myshareit.item.entity.Item;
 import anton.myshareit.item.dto.ItemDto;
 
 public class ItemMapper {

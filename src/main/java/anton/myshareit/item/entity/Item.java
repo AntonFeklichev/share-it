@@ -1,4 +1,4 @@
-package anton.myshareit.item;
+package anton.myshareit.item.entity;
 
 import anton.myshareit.request.ItemRequest;
 import anton.myshareit.user.entity.User;

@@ -1,6 +1,7 @@
 package anton.myshareit.user.controller;
 
 import anton.myshareit.user.dto.UserDto;
+import anton.myshareit.user.service.UserService;
 import anton.myshareit.user.service.UserServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +13,10 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 public class UserController {
 
-    private final UserServiceImpl userService;
+    private final UserService userService;
 
     @Autowired
-    public UserController(UserServiceImpl userService) {
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 
@@ -35,7 +36,6 @@ public class UserController {
                               String userDto,
                               @PathVariable
                               Long userId) {
-
         return userService.updateUser(userDto, userId);
     }
 
