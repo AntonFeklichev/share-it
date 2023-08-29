@@ -1,8 +1,7 @@
 package anton.myshareit.user.entity;
 
+import jakarta.persistence.*;
 import lombok.*;
-
-import javax.persistence.*;
 
 @Getter
 @Setter
@@ -10,15 +9,25 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table
+@Table(name = "users",
+        uniqueConstraints = @UniqueConstraint(
+                name = "users_email_unique",
+                columnNames = "email"
+        )
+)
 public class User {
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-@Column(name = "user_id")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id",
+            nullable = false)
     private Long id;
 
-@Column(name = "name")
+    @Column(name = "name",
+            nullable = false)
     private String name;
-@Column(name = "email")
+
+    @Column(name = "email",
+            nullable = false,
+            unique = true)
     private String email;
 }

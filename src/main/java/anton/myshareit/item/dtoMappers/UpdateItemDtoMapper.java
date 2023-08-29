@@ -1,17 +1,22 @@
 package anton.myshareit.item.dtoMappers;
 
+import anton.myshareit.item.dto.UpdateItemDto;
 import anton.myshareit.item.entity.Item;
-import anton.myshareit.item.dto.ListOfItemsDto;
+import lombok.Builder;
+import lombok.Data;
 
-public class ListOfItemsDtoMapper {
+@Data
+@Builder
+public class UpdateItemDtoMapper {
 
-    public static ListOfItemsDto toDto(Item item) {
+    public static UpdateItemDto toUpdateItemDto(Item item) {
 
-        return ListOfItemsDto.builder()
+        return UpdateItemDto.builder()
                 .id(item.getId())
                 .name(item.getName())
                 .description(item.getDescription())
                 .available(item.getAvailable())
                 .build();
     }
+
 }

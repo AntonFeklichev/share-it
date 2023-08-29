@@ -2,11 +2,13 @@ package anton.myshareit.user.controller;
 
 import anton.myshareit.user.dto.UserDto;
 import anton.myshareit.user.service.UserService;
-import anton.myshareit.user.service.UserServiceImpl;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(path = "/users")
@@ -21,7 +23,7 @@ public class UserController {
     }
 
     @PostMapping
-    public UserDto addUser(@RequestBody UserDto userDto) {
+    public UserDto addUser(@Valid @RequestBody UserDto userDto) {
         return userService.addUser(userDto);
     }
 
@@ -32,21 +34,24 @@ public class UserController {
     }
 
     @PatchMapping("/{userId}")
-    public UserDto updateUser(@RequestBody
+    public UserDto updateUser(@Valid @RequestBody
                               String userDto,
                               @PathVariable
                               Long userId) {
         return userService.updateUser(userDto, userId);
     }
 
+    @GetMapping
+    public List<UserDto> getAllUsers() {
+        return userService.getAllUsers();
+    }
+
     @DeleteMapping("/{userId}")
     public ResponseEntity<String> deleteUser(@PathVariable
                                              Long userId) {
-        Boolean isDelete = userService.deleteUser(userId);
-        if (isDelete) {
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        userService.deleteUser(userId);
+
+        return ResponseEntity.noContent().build();
+
     }
 }

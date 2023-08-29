@@ -1,0 +1,25 @@
+package anton.myshareit.booking.dto;
+
+import anton.myshareit.booking.entity.BookingStatus;
+import anton.myshareit.item.dto.ItemDto;
+import anton.myshareit.item.entity.Item;
+import anton.myshareit.user.dto.UserDto;
+import anton.myshareit.user.entity.User;
+import lombok.Builder;
+import lombok.Data;
+
+import java.time.LocalDateTime;
+
+@Data
+@Builder
+public class BookingDto {
+
+    private Long id;
+    private LocalDateTime start;
+    private LocalDateTime end;
+    private ItemDto item;
+    private UserDto booker;
+    private Long bookerId;
+    private BookingStatus status;
+
+}
