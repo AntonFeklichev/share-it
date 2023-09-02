@@ -1,7 +1,7 @@
 package anton.myshareit.item.entity;
 
 import anton.myshareit.booking.entity.Booking;
-import anton.myshareit.request.ItemRequest;
+import anton.myshareit.request.entity.ItemRequest;
 import anton.myshareit.user.entity.User;
 import jakarta.persistence.*;
 import lombok.*;
@@ -32,7 +32,7 @@ public class Item {
     @JoinColumn(name = "owner_id")
     @ManyToOne(targetEntity = User.class, fetch = FetchType.EAGER)
     private User owner;
-    @Transient
+    @ManyToOne()
     private ItemRequest request;
     @OneToMany(mappedBy = "item")
     private List<Booking> bookings;
@@ -43,4 +43,10 @@ public class Item {
     public Boolean isAvailable() {
         return available;
     }
+
+    public void setRequest(ItemRequest itemRequest) {
+        this.request = itemRequest;
+        itemRequest.getItems().add(this);
+    }
+
 }

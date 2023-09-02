@@ -1,6 +1,8 @@
-package anton.myshareit.request;
+package anton.myshareit.request.dto;
 
+import anton.myshareit.user.dto.UserDto;
 import anton.myshareit.user.entity.User;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -10,9 +12,14 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ItemRequest {
+
+public class RequestDto {
+
     private Long id;
+    @NotBlank
     private String description;
-    private User requestor;
+    private UserDto requester;
     private LocalDateTime created;
+
+
 }

@@ -3,8 +3,10 @@ package anton.myshareit.item.dtoMappers;
 import anton.myshareit.booking.dto.BookingDto;
 import anton.myshareit.item.dto.CreateItemDto;
 import anton.myshareit.item.dto.ItemDto;
+import anton.myshareit.item.dto.ItemForRequestDto;
 import anton.myshareit.item.dtoMappers.commentDtoMapper.CommentDtoMapper;
 import anton.myshareit.item.entity.Item;
+import anton.myshareit.request.requestMappers.CreateRequestMapper;
 import anton.myshareit.user.dtoMappers.UserMapper;
 
 import java.util.stream.Collectors;
@@ -12,12 +14,13 @@ import java.util.stream.Collectors;
 public class ItemMapper {
 
     public static ItemDto toItemDto(Item item) {
-        return ItemDto.builder().id(item.getId())
+        return ItemDto.builder()
+                .id(item.getId())
                 .name(item.getName())
                 .description(item.getDescription())
                 .available(item.getAvailable())
                 .owner(UserMapper.toUserDto(item.getOwner()))
-                .request(item.getRequest())
+                .request(CreateRequestMapper.toGetRequestDto(item.getRequest()))
                 .comments(item.getComments()
                         .stream()
                         .map(CommentDtoMapper::toDtoWithoutItem)
@@ -32,7 +35,7 @@ public class ItemMapper {
                 .description(item.getDescription())
                 .available(item.getAvailable())
                 .owner(UserMapper.toUserDto(item.getOwner()))
-                .request(item.getRequest())
+                .request(CreateRequestMapper.toGetRequestDto(item.getRequest()))
                 .lastBooking(lastBooking)
                 .nextBooking(nextBooking)
                 .comments(item.getComments()
@@ -52,7 +55,6 @@ public class ItemMapper {
                 .description(itemDto.getDescription())
                 .available(itemDto.getAvailable())
                 .owner(itemDto.getOwner() == null ? null : UserMapper.toUser(itemDto.getOwner()))
-                .request(itemDto.getRequest())
                 .build();
     }
 
@@ -64,5 +66,16 @@ public class ItemMapper {
                 .available(createItemDto.isAvailable())
                 .build();
     }
+
+    public static ItemForRequestDto toDtoForRequest(Item item) {
+        return ItemForRequestDto.builder()
+                .id(item.getId())
+                .name(item.getName())
+                .description(item.getDescription())
+                .available(item.isAvailable())
+                .requestId(item.getRequest().getId())
+                .build();
+    }
+
 
 }

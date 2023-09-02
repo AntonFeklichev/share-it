@@ -19,6 +19,8 @@ import anton.myshareit.item.entity.Comment;
 import anton.myshareit.item.entity.Item;
 import anton.myshareit.item.repository.ItemRepository;
 import anton.myshareit.item.repository.comment.CommentRepository;
+import anton.myshareit.request.entity.ItemRequest;
+import anton.myshareit.request.repository.RequestRepository;
 import anton.myshareit.user.entity.User;
 import anton.myshareit.user.repository.UserRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -40,12 +42,21 @@ public class ItemServiceImpl implements ItemService {
     private final BookingService bookingService;
     private final CommentRepository commentRepository;
     private final BookingRepository bookingRepository;
+    private final RequestRepository requestRepository;
 
     @Override
     public ItemDto addItem(Long userId, CreateItemDto createItemDto) {
         User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException("User on found"));
         Item item = ItemMapper.toNewItem(createItemDto);
+        if (createItemDto.requestId() != null) {
+
+            ItemRequest itemRequest = requestRepository.findById(createItemDto.requestId())
+                    .orElseThrow(() -> new BadRequestExceptions("Request not found"));
+            item.setRequest(itemRequest);
+        }
+
         item.setOwner(user);
+
         Item saved = itemRepository.save(item);
         return ItemMapper.toItemDto(saved);
     }

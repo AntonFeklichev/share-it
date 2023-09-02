@@ -1,12 +1,10 @@
 package anton.myshareit.item.dto;
 
 import anton.myshareit.booking.dto.BookingDto;
-import anton.myshareit.booking.entity.BookingStatus;
 import anton.myshareit.item.dto.comment.CommentDto;
-import anton.myshareit.item.entity.Comment;
-import anton.myshareit.request.ItemRequest;
+import anton.myshareit.request.dto.GetRequestDto;
+import anton.myshareit.request.entity.ItemRequest;
 import anton.myshareit.user.dto.UserDto;
-import anton.myshareit.user.entity.User;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -30,7 +28,7 @@ public class ItemDto {
     @NotNull
     private Boolean available;
     private UserDto owner;
-    private ItemRequest request;
+    private GetRequestDto request;
 
     private BookingDto lastBooking;
     private BookingDto nextBooking;

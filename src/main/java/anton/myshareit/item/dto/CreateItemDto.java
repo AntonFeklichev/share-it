@@ -12,7 +12,8 @@ public record CreateItemDto(
         @NotBlank
         String description,
         @NotNull
-        Boolean available) {
+        Boolean available,
+        Long requestId) {
 
     public Boolean isAvailable() {
         return available;
