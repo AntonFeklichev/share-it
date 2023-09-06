@@ -2,6 +2,7 @@ package anton.myshareit.item.dtoMappers;
 
 import anton.myshareit.booking.dto.BookingDto;
 import anton.myshareit.item.dto.CreateItemDto;
+import anton.myshareit.item.dto.CreateItemResponseDto;
 import anton.myshareit.item.dto.ItemDto;
 import anton.myshareit.item.dto.ItemForRequestDto;
 import anton.myshareit.item.dtoMappers.commentDtoMapper.CommentDtoMapper;
@@ -28,6 +29,22 @@ public class ItemMapper {
                 .build();
 
     }
+
+    public static ItemDto toItemDtoInAddItemMethod(Item item) { // TODO 1
+        return ItemDto.builder()
+                .id(item.getId())
+                .name(item.getName())
+                .description(item.getDescription())
+                .available(item.getAvailable())
+                .owner(UserMapper.toUserDto(item.getOwner()))
+                .comments(item.getComments()
+                        .stream()
+                        .map(CommentDtoMapper::toDtoWithoutItem)
+                        .collect(Collectors.toList()))
+                .build();
+
+    }
+
 
     public static ItemDto toItemDtoWhitBookings(Item item, BookingDto lastBooking, BookingDto nextBooking) {
         return ItemDto.builder().id(item.getId())
@@ -74,6 +91,16 @@ public class ItemMapper {
                 .description(item.getDescription())
                 .available(item.isAvailable())
                 .requestId(item.getRequest().getId())
+                .build();
+    }
+
+    public static CreateItemResponseDto toDtoForResponse(Item item) {
+        return CreateItemResponseDto.builder()
+                .id(item.getId())
+                .name(item.getName())
+                .description(item.getDescription())
+                .requestId(item.getRequest() == null ? null : item.getRequest().getId())
+                .available(item.isAvailable())
                 .build();
     }
 

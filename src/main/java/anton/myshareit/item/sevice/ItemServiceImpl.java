@@ -8,6 +8,7 @@ import anton.myshareit.exceptions.BadRequestExceptions;
 import anton.myshareit.exceptions.ItemNotFoundException;
 import anton.myshareit.exceptions.UserNotFoundException;
 import anton.myshareit.item.dto.CreateItemDto;
+import anton.myshareit.item.dto.CreateItemResponseDto;
 import anton.myshareit.item.dto.ItemDto;
 import anton.myshareit.item.dto.UpdateItemDto;
 import anton.myshareit.item.dto.comment.CommentDto;
@@ -45,7 +46,7 @@ public class ItemServiceImpl implements ItemService {
     private final RequestRepository requestRepository;
 
     @Override
-    public ItemDto addItem(Long userId, CreateItemDto createItemDto) {
+    public CreateItemResponseDto addItem(Long userId, CreateItemDto createItemDto) {
         User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException("User on found"));
         Item item = ItemMapper.toNewItem(createItemDto);
         if (createItemDto.requestId() != null) {
@@ -58,7 +59,7 @@ public class ItemServiceImpl implements ItemService {
         item.setOwner(user);
 
         Item saved = itemRepository.save(item);
-        return ItemMapper.toItemDto(saved);
+        return ItemMapper.toDtoForResponse(saved);
     }
 
     @Override

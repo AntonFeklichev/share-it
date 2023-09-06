@@ -26,6 +26,9 @@ public class CreateRequestMapper {
     }
 
     public static GetRequestDto toGetRequestDto(ItemRequest itemRequest) {
+        if (itemRequest == null) {
+            return null;
+        }
 
         return GetRequestDto.builder()
                 .id(itemRequest.getId())

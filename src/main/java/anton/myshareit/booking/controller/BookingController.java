@@ -4,14 +4,15 @@ import anton.myshareit.booking.dto.BookingDto;
 import anton.myshareit.booking.dto.CreateBookingDto;
 import anton.myshareit.booking.entity.BookingStatus;
 import anton.myshareit.booking.service.BookingService;
-import anton.myshareit.exceptions.AuthenticationFailedException;
-import anton.myshareit.exceptions.WrongStateExceptions;
 import jakarta.validation.Valid;
 import jakarta.validation.ValidationException;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,6 +22,7 @@ import static anton.myshareit.constants.Constants.X_SHARER_USER_ID;
 
 @RestController
 @RequestMapping(path = "/bookings")
+@Validated
 
 public class BookingController {
 
@@ -63,12 +65,14 @@ public class BookingController {
                                            String stringState,
                                            @RequestHeader(name = X_SHARER_USER_ID)
                                            Long userId,
-                                           @RequestParam(name = "pageNumber", defaultValue = "0")
-                                           Integer pageNumber,
-                                           @RequestParam(name = "pageSize",
+                                           @RequestParam(name = "from", defaultValue = "0")
+                                           @PositiveOrZero
+                                           Integer from,
+                                           @RequestParam(name = "size",
                                                    defaultValue = DEFAULT_PAGE_SIZE)
-                                           Integer pageSize) throws ValidationException {
-        Pageable pageRequest = PageRequest.of(pageNumber, pageSize, Sort.by("start")
+                                           @Positive
+                                           Integer size) {
+        Pageable pageRequest = PageRequest.of(from/size, size, Sort.by("start")
                 .descending());
 
         try {
@@ -87,13 +91,15 @@ public class BookingController {
                                                   String stateString,
                                                   @RequestHeader(name = X_SHARER_USER_ID)
                                                   Long userId,
-                                                  @RequestParam(name = "pageNumber",
+                                                  @RequestParam(name = "from",
                                                           defaultValue = "0")
-                                                  Integer pageNumber,
-                                                  @RequestParam(name = "pageSize",
+                                                  @PositiveOrZero
+                                                  Integer from,
+                                                  @RequestParam(name = "size",
                                                           defaultValue = DEFAULT_PAGE_SIZE)
-                                                  Integer pageSize) {
-        Pageable pageRequest = PageRequest.of(pageNumber, pageSize, Sort.by("start")
+                                                  @Positive
+                                                  Integer size) {
+        Pageable pageRequest = PageRequest.of(from, size, Sort.by("start")
                 .descending());
 
         try {

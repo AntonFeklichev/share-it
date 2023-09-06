@@ -1,6 +1,7 @@
 package anton.myshareit.request.service;
 
 import anton.myshareit.exceptions.BadRequestExceptions;
+import anton.myshareit.exceptions.ItemRequestNotFound;
 import anton.myshareit.exceptions.UserNotFoundException;
 import anton.myshareit.item.repository.ItemRepository;
 import anton.myshareit.request.dto.GetRequestDto;
@@ -64,16 +65,18 @@ public class RequestServiceImpl implements RequestService {
     }
 
     @Override
-    public Page<GetRequestDto> getRequestList(Pageable pageRequest) {
+    public Page<GetRequestDto> getRequestList(Long userId, Pageable pageRequest) {
 
-        return requestRepository.getRequestList(pageRequest)
+        return requestRepository.getRequestList(userId, pageRequest)
                 .map(CreateRequestMapper::toGetRequestDto);
     }
 
     @Override
-    public GetRequestDto getRequest(Long requestId) {
+    public GetRequestDto getRequest(Long requestId, Long userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(()-> new UserNotFoundException("User not found"));
         ItemRequest itemRequest = requestRepository.findById(requestId)
-                .orElseThrow(() -> new BadRequestExceptions("Request not found"));
+                .orElseThrow(() -> new ItemRequestNotFound("Request not found"));
 
         return CreateRequestMapper.toGetRequestDto(itemRequest);
     }
