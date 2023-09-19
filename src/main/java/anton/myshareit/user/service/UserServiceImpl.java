@@ -45,7 +45,8 @@ public class UserServiceImpl implements UserService {
         User oldUser = userRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException("User not found"));
         try {
-            User updatedUser = new ObjectMapper().readerForUpdating(oldUser).readValue(userDto);
+            User updatedUser = new ObjectMapper().readerForUpdating(oldUser)
+                    .readValue(userDto);
             userRepository.save(updatedUser);
             return UserMapper.toUserDto(updatedUser);
         } catch (JsonProcessingException ex) {

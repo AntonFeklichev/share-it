@@ -64,7 +64,8 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public UpdateItemDto updateItem(Long itemId, String updateItemDto, Long userId) {
-        Item oldItem = itemRepository.findById(itemId).orElseThrow(() -> new ItemNotFoundException("Item not found"));
+        Item oldItem = itemRepository.findById(itemId)
+                .orElseThrow(() -> new ItemNotFoundException("Item not found"));
         authenticateOwner(oldItem, userId);
         try {
             Item updateItem = new ObjectMapper().readerForUpdating(oldItem).readValue(updateItemDto);
