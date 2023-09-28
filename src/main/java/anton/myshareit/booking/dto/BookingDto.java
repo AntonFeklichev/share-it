@@ -5,13 +5,17 @@ import anton.myshareit.item.dto.ItemDto;
 import anton.myshareit.item.entity.Item;
 import anton.myshareit.user.dto.UserDto;
 import anton.myshareit.user.entity.User;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class BookingDto {
 
     private Long id;

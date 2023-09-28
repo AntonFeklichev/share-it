@@ -35,7 +35,8 @@ public class Item {
     @ManyToOne()
     private ItemRequest request;
     @OneToMany(mappedBy = "item")
-    private List<Booking> bookings;
+    @Builder.Default
+    private List<Booking> bookings = new ArrayList<>();
     @OneToMany(mappedBy = "item")
     @Builder.Default
     private List<Comment> comments = new ArrayList<>();
@@ -49,4 +50,8 @@ public class Item {
         itemRequest.getItems().add(this);
     }
 
+    public void addBooking(Booking booking){
+        bookings.add(booking);
+        booking.setItem(this);
+    }
 }

@@ -5,9 +5,12 @@ import anton.myshareit.booking.entity.BookingStatus;
 import anton.myshareit.item.dto.CreateItemDto;
 import anton.myshareit.item.dto.ItemDto;
 import anton.myshareit.item.dto.UpdateItemDto;
+import anton.myshareit.item.dto.comment.CommentDto;
 import anton.myshareit.item.entity.Item;
 import anton.myshareit.user.entity.User;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -23,6 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static anton.myshareit.constants.Constants.X_SHARER_USER_ID;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -52,7 +56,7 @@ public class ItemControllerTest {
     UpdateItemDto updateItemDto = UpdateItemDto.builder()
             .id(1L)
             .name("phone")
-            .description("iPone 15 proMax")
+            .description("iPhone 15 proMax")
             .available(true)
             .build();
     Item item = Item.builder()
@@ -64,20 +68,34 @@ public class ItemControllerTest {
 
     Booking nextBookingByItem = Booking.builder()
             .start(LocalDateTime.now().plusDays(1))
-            .end(LocalDateTime.now().minusDays(1))
+            .end(LocalDateTime.now().plusDays(2))
             .item(item)
             .booker(booker)
-            .status(BookingStatus.WAITING)
+            .status(BookingStatus.APPROVED)
             .build();
     Booking lastBookingByItem = Booking.builder()
             .start(LocalDateTime.now().minusDays(2))
             .end(LocalDateTime.now().minusDays(1))
             .item(item)
             .booker(booker)
-            .status(BookingStatus.WAITING)
+            .status(BookingStatus.APPROVED)
+            .build();
+    ItemDto itemDto = ItemDto.builder()
+            .id(item.getId())
+            .name(item.getName())
+            .description(item.getDescription())
+            .available(item.isAvailable())
+            .build();
+    CommentDto commentDto = CommentDto.builder()
+            .id(1L)
+            .text("i want this phone")
+            .item(itemDto)
+            .authorName("Artem")
             .build();
 
-    ObjectMapper objectMapper = new ObjectMapper();
+    ObjectMapper objectMapper = new ObjectMapper().registerModule(new JavaTimeModule());
+
+
     MockMvc mockMvc;
     WebApplicationContext wac;
     @Autowired
@@ -90,7 +108,7 @@ public class ItemControllerTest {
 
     @Test
     @SneakyThrows
-    @Transactional //TODO понять почему сработало
+    @Transactional
     public void testAddItem() {
         String createItemDtoJson = new ObjectMapper().writeValueAsString(createItemDto);
 
@@ -105,7 +123,7 @@ public class ItemControllerTest {
                         jsonPath("$.description").value("iPhone 15"));
 
         Assertions.assertTrue(testEntityManager.find(Item.class, 1L)
-                .isAvailable());//TODO проверить сохранение айтема
+                .isAvailable());
     }
 
 
@@ -134,16 +152,108 @@ public class ItemControllerTest {
         testEntityManager.persistAndFlush(item);
         testEntityManager.persistAndFlush(lastBookingByItem);
         testEntityManager.persistAndFlush(nextBookingByItem);
+        item.addBooking(lastBookingByItem);
+        item.addBooking(nextBookingByItem);
+        testEntityManager.merge(item);
+
 
         MvcResult mvcResult = mockMvc.perform(get("/items/{itemId}", item.getId())
                         .header(X_SHARER_USER_ID, owner.getId()))
                 .andExpect(status().isOk())
                 .andReturn();
         String resultString = mvcResult.getResponse().getContentAsString();
+
+        //TODO уточнить у Матвея
+        // 1.json и даты, написать кастомный сереализатор
+        // 2.как десереализуется не в тестах
+        // 3.почему не используется объект objectMapper не в методе
         ItemDto itemDto = objectMapper.readValue(resultString, ItemDto.class);
 
         Assertions.assertEquals(nextBookingByItem.getId(), itemDto.getNextBooking().getId());
         Assertions.assertEquals(lastBookingByItem.getId(), itemDto.getLastBooking().getId());
+    }
+
+
+    @Test
+    @SneakyThrows
+    @Transactional
+    public void testGetUsersItemList() {
+        testEntityManager.persistAndFlush(owner);
+        testEntityManager.persistAndFlush(booker);
+        testEntityManager.persistAndFlush(item);
+        testEntityManager.persistAndFlush(lastBookingByItem);
+        testEntityManager.persistAndFlush(nextBookingByItem);
+        item.addBooking(lastBookingByItem);
+        item.addBooking(nextBookingByItem);
+        testEntityManager.merge(item);
+
+        MvcResult mvcResult = mockMvc.perform(get("/items")
+                        .header(X_SHARER_USER_ID, owner.getId()))
+                .andExpect(status().isOk()).andReturn();
+
+        String result = mvcResult.getResponse().getContentAsString();
+
+        List<ItemDto> itemDtoResponse = objectMapper.readValue(result, new TypeReference<>() {
+        });
+
+        //TODO обсудить с Матвеем TypeReference/TypeToken/TypeTools
+
+        Assertions.assertEquals(item.getId(), itemDtoResponse.get(0).getId());
+        Assertions.assertEquals(nextBookingByItem.getId(), itemDtoResponse.get(0)
+                .getNextBooking().getId());
+    }
+
+
+    @Test
+    @SneakyThrows
+    @Transactional
+    public void testFindItem() {
+
+        testEntityManager.persistAndFlush(owner);
+        testEntityManager.persistAndFlush(booker);
+        testEntityManager.persistAndFlush(item);
+        testEntityManager.persistAndFlush(lastBookingByItem);
+        testEntityManager.persistAndFlush(nextBookingByItem);
+        item.addBooking(lastBookingByItem);
+        item.addBooking(nextBookingByItem);
+        testEntityManager.merge(item);
+
+        MvcResult mvcResult = mockMvc.perform(get("/items/search")
+                .param("text", "iPhone 15")).andExpect(status().isOk()).andReturn();
+
+        String result = mvcResult.getResponse().getContentAsString();
+
+        List<ItemDto> itemDtoResponse = objectMapper.readValue(result, new TypeReference<>() {
+        });
+
+        Assertions.assertEquals("iPhone 15", itemDtoResponse.get(0).getDescription());
+
+    }
+
+
+    @Test
+    @SneakyThrows
+    @Transactional
+    public void testAddComment() {
+
+        testEntityManager.persistAndFlush(owner);
+        testEntityManager.persistAndFlush(booker);
+        testEntityManager.persistAndFlush(item);
+        testEntityManager.persistAndFlush(lastBookingByItem);
+        testEntityManager.persistAndFlush(nextBookingByItem);
+        item.addBooking(lastBookingByItem);
+        item.addBooking(nextBookingByItem);
+        testEntityManager.merge(item);
+
+
+        String commentDtoString = new ObjectMapper().writeValueAsString(commentDto);
+
+        mockMvc.perform(post("/items/{itemId}/comment", item.getId())
+                        .content(commentDtoString)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .header(X_SHARER_USER_ID, booker.getId()))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.text").value("i want this phone"));
     }
 
 }
