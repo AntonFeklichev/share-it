@@ -1,7 +1,7 @@
 package anton.myshareit.booking.dto;
 
 import anton.myshareit.booking.entity.BookingStatus;
-import anton.myshareit.item.dto.ItemDto;
+import item.ItemDto;
 import anton.myshareit.item.entity.Item;
 import anton.myshareit.user.dto.UserDto;
 import anton.myshareit.user.entity.User;

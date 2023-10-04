@@ -1,6 +1,6 @@
 package request;
 
-import anton.myshareit.user.dto.UserDto;
+import user.dto.UserDto;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 

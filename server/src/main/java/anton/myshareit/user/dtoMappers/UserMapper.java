@@ -1,6 +1,7 @@
 package anton.myshareit.user.dtoMappers;
 
-import anton.myshareit.user.dto.UserDto;
+
+import user.dto.UserDto;
 import anton.myshareit.user.entity.User;
 
 public class UserMapper {

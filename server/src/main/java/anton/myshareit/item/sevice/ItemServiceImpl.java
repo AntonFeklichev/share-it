@@ -9,7 +9,7 @@ import anton.myshareit.exceptions.ItemNotFoundException;
 import anton.myshareit.exceptions.UserNotFoundException;
 import item.CreateItemDto;
 import item.CreateItemResponseDto;
-import anton.myshareit.item.dto.ItemDto;
+import item.ItemDto;
 import item.UpdateItemDto;
 import item.comment.CommentDto;
 import item.comment.CreateCommentDto;

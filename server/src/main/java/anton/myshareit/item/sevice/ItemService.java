@@ -1,6 +1,6 @@
 package anton.myshareit.item.sevice;
 
-import anton.myshareit.item.dto.*;
+import item.*;
 import item.CreateItemDto;
 import item.CreateItemResponseDto;
 import item.UpdateItemDto;

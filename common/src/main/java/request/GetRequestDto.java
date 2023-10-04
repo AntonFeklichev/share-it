@@ -1,6 +1,6 @@
 package request;
 
-import anton.myshareit.item.dto.ItemForRequestDto;
+import item.ItemForRequestDto;
 import lombok.*;
 
 import java.time.LocalDateTime;

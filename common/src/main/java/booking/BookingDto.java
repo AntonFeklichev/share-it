@@ -1,8 +1,7 @@
 package booking;
 
-import anton.myshareit.booking.entity.BookingStatus;
 import item.ItemDto;
-import anton.myshareit.user.dto.UserDto;
+import user.dto.UserDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

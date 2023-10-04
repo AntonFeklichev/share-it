@@ -1,13 +1,13 @@
 package item;
 
-import anton.myshareit.booking.dto.BookingDto;
-import anton.myshareit.item.dto.comment.CommentDto;
-import anton.myshareit.request.dto.GetRequestDto;
-import anton.myshareit.request.entity.ItemRequest;
-import anton.myshareit.user.dto.UserDto;
+
+import booking.BookingDto;
+import comment.CommentDto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
+import request.GetRequestDto;
+import user.dto.UserDto;
 
 import java.util.ArrayList;
 import java.util.List;

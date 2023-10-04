@@ -3,7 +3,7 @@ package anton.myshareit.item.dtoMappers;
 import anton.myshareit.booking.dto.BookingDto;
 import item.CreateItemDto;
 import item.CreateItemResponseDto;
-import anton.myshareit.item.dto.ItemDto;
+import item.ItemDto;
 import item.ItemForRequestDto;
 import anton.myshareit.item.dtoMappers.commentDtoMapper.CommentDtoMapper;
 import anton.myshareit.item.entity.Item;
