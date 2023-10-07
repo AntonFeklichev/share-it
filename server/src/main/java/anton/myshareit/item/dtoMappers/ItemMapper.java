@@ -1,6 +1,7 @@
 package anton.myshareit.item.dtoMappers;
 
-import anton.myshareit.booking.dto.BookingDto;
+
+import booking.BookingDto;
 import item.CreateItemDto;
 import item.CreateItemResponseDto;
 import item.ItemDto;

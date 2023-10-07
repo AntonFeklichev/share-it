@@ -2,7 +2,7 @@ package anton.myshareit.booking.repository;
 
 
 import anton.myshareit.booking.entity.Booking;
-import anton.myshareit.booking.entity.BookingStatus;
+import booking.BookingStatus;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

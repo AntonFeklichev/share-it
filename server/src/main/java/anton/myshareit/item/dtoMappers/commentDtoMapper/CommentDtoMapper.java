@@ -1,7 +1,7 @@
 package anton.myshareit.item.dtoMappers.commentDtoMapper;
 
-import item.comment.CommentDto;
-import item.comment.CreateCommentDto;
+import comment.CommentDto;
+import comment.CreateCommentDto;
 import anton.myshareit.item.dtoMappers.ItemMapper;
 import anton.myshareit.item.entity.Comment;
 

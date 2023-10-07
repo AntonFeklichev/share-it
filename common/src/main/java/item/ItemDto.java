@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import request.GetRequestDto;
-import user.dto.UserDto;
+import user.UserDto;
 
 import java.util.ArrayList;
 import java.util.List;

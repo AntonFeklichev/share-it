@@ -1,16 +1,17 @@
 package anton.myshareit.booking.service;
 
-import anton.myshareit.booking.dto.BookingDto;
-import anton.myshareit.booking.dto.CreateBookingDto;
+
 import anton.myshareit.booking.dtoMappers.BookingMapper;
 import anton.myshareit.booking.entity.Booking;
-import anton.myshareit.booking.entity.BookingStatus;
 import anton.myshareit.booking.repository.BookingRepository;
 import anton.myshareit.exceptions.*;
 import anton.myshareit.item.entity.Item;
 import anton.myshareit.item.repository.ItemRepository;
 import anton.myshareit.user.entity.User;
 import anton.myshareit.user.repository.UserRepository;
+import booking.BookingDto;
+import booking.BookingStatus;
+import booking.CreateBookingDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

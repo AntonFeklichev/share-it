@@ -1,7 +1,8 @@
 package booking;
 
+
 import item.ItemDto;
-import user.dto.UserDto;
+import user.UserDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

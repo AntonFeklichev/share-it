@@ -1,7 +1,7 @@
 package anton.myshareit.user.service;
 
 import anton.myshareit.exceptions.UserNotFoundException;
-import anton.myshareit.user.dto.UserDto;
+import user.UserDto;
 import anton.myshareit.user.dtoMappers.UserMapper;
 import anton.myshareit.user.entity.User;
 import anton.myshareit.user.repository.UserRepository;

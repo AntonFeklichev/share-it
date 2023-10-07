@@ -1,11 +1,12 @@
 package anton.myshareit.booking.dtoMappers;
 
 import anton.myshareit.booking.controller.BookingController;
-import anton.myshareit.booking.dto.BookingDto;
-import anton.myshareit.booking.dto.CreateBookingDto;
+
 import anton.myshareit.booking.entity.Booking;
 import anton.myshareit.item.dtoMappers.ItemMapper;
 import anton.myshareit.user.dtoMappers.UserMapper;
+import booking.BookingDto;
+import booking.CreateBookingDto;
 
 public class BookingMapper {
 

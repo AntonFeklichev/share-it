@@ -3,7 +3,7 @@ package anton.myshareit.user.service;
 import anton.myshareit.exceptions.AuthenticationFailedException;
 import anton.myshareit.exceptions.UserAlreadyExistException;
 import anton.myshareit.exceptions.UserNotFoundException;
-import anton.myshareit.user.dto.UserDto;
+
 import anton.myshareit.user.dtoMappers.UserMapper;
 import anton.myshareit.user.entity.User;
 import anton.myshareit.user.repository.UserRepository;
@@ -11,6 +11,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import user.UserDto;
 
 import java.util.List;
 import java.util.stream.Collectors;

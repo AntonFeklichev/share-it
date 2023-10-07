@@ -1,9 +1,10 @@
 package anton.myshareit.item.controller;
 
 import anton.myshareit.booking.entity.Booking;
-import anton.myshareit.booking.entity.BookingStatus;
+import booking.BookingStatus;
 import item.CreateItemDto;
-import anton.myshareit.item.dto.ItemDto;
+
+import item.ItemDto;
 import item.UpdateItemDto;
 import item.comment.CommentDto;
 import anton.myshareit.item.entity.Item;

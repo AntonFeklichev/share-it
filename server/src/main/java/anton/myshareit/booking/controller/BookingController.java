@@ -1,9 +1,10 @@
 package anton.myshareit.booking.controller;
 
-import anton.myshareit.booking.dto.BookingDto;
-import anton.myshareit.booking.dto.CreateBookingDto;
-import anton.myshareit.booking.entity.BookingStatus;
+
 import anton.myshareit.booking.service.BookingService;
+import booking.BookingDto;
+import booking.BookingStatus;
+import booking.CreateBookingDto;
 import jakarta.validation.Valid;
 import jakarta.validation.ValidationException;
 import jakarta.validation.constraints.Positive;
@@ -36,7 +37,7 @@ public class BookingController {
     @PostMapping
     public BookingDto addBooking(@Valid
                                  @RequestBody
-                                 CreateBookingDto createBookingDto,
+                                     CreateBookingDto createBookingDto,
                                  @RequestHeader(name = X_SHARER_USER_ID)
                                  Long userId) {
         return bookingService.addBooking(createBookingDto, userId);

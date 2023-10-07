@@ -1,7 +1,7 @@
 package item.comment;
 
 import item.ItemDto;
-import anton.myshareit.user.dto.UserDto;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;

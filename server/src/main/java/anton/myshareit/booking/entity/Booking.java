@@ -2,6 +2,7 @@ package anton.myshareit.booking.entity;
 
 import anton.myshareit.item.entity.Item;
 import anton.myshareit.user.entity.User;
+import booking.BookingStatus;
 import jakarta.persistence.*;
 import lombok.*;
 

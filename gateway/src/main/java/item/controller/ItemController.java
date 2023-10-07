@@ -1,8 +1,9 @@
 package item.controller;
 
 import comment.CreateCommentDto;
+import item.CreateItemDto;
 import item.client.ItemClient;
-import item.createItemDto.CreateItemDto;
+
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;

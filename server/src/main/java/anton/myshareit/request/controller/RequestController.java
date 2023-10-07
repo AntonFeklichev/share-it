@@ -1,8 +1,7 @@
 package anton.myshareit.request.controller;
 
 import anton.myshareit.constants.Constants;
-import anton.myshareit.request.dto.GetRequestDto;
-import anton.myshareit.request.dto.RequestDto;
+
 import anton.myshareit.request.service.RequestService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
@@ -13,6 +12,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import request.GetRequestDto;
+import request.RequestDto;
 
 import java.util.List;
 

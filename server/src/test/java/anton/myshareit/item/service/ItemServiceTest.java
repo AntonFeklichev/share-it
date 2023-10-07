@@ -1,21 +1,23 @@
 package anton.myshareit.item.service;
 
-import anton.myshareit.booking.dto.BookingDto;
-import anton.myshareit.booking.entity.BookingStatus;
+
 import anton.myshareit.booking.repository.BookingRepository;
 import anton.myshareit.booking.service.BookingService;
+import booking.BookingDto;
+import booking.BookingStatus;
 import item.CreateItemDto;
 import item.CreateItemResponseDto;
-import anton.myshareit.item.dto.ItemDto;
+
+import item.ItemDto;
 import item.UpdateItemDto;
-import item.comment.CommentDto;
-import item.comment.CreateCommentDto;
+import comment.CommentDto;
+import comment.CreateCommentDto;
 import anton.myshareit.item.entity.Item;
 import anton.myshareit.item.repository.ItemRepository;
 import anton.myshareit.item.repository.comment.CommentRepository;
 import anton.myshareit.item.sevice.ItemServiceImpl;
 import anton.myshareit.request.repository.RequestRepository;
-import anton.myshareit.user.dto.UserDto;
+
 import anton.myshareit.user.entity.User;
 import anton.myshareit.user.repository.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -30,6 +32,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import user.UserDto;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

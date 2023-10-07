@@ -2,7 +2,8 @@ package item.client;
 
 import client.BaseClient;
 import comment.CreateCommentDto;
-import item.createItemDto.CreateItemDto;
+
+import item.CreateItemDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;

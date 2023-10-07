@@ -1,6 +1,6 @@
 package request;
 
-import user.dto.UserDto;
+import user.UserDto;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 

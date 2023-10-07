@@ -1,9 +1,10 @@
 package anton.myshareit.request.service;
 
-import anton.myshareit.request.dto.GetRequestDto;
-import anton.myshareit.request.dto.RequestDto;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import request.GetRequestDto;
+import request.RequestDto;
 
 import java.util.List;
 

@@ -1,9 +1,8 @@
 package anton.myshareit.booking.service;
 
-import anton.myshareit.booking.controller.StateEnum;
-import anton.myshareit.booking.dto.BookingDto;
-import anton.myshareit.booking.dto.CreateBookingDto;
-import anton.myshareit.booking.entity.BookingStatus;
+import booking.BookingDto;
+import booking.BookingStatus;
+import booking.CreateBookingDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

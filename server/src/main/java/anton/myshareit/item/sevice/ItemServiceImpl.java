@@ -1,18 +1,19 @@
 package anton.myshareit.item.sevice;
 
-import anton.myshareit.booking.dto.BookingDto;
+
 import anton.myshareit.booking.repository.BookingRepository;
 import anton.myshareit.booking.service.BookingService;
 import anton.myshareit.exceptions.AuthenticationFailedException;
 import anton.myshareit.exceptions.BadRequestExceptions;
 import anton.myshareit.exceptions.ItemNotFoundException;
 import anton.myshareit.exceptions.UserNotFoundException;
+import booking.BookingDto;
 import item.CreateItemDto;
 import item.CreateItemResponseDto;
 import item.ItemDto;
 import item.UpdateItemDto;
-import item.comment.CommentDto;
-import item.comment.CreateCommentDto;
+import comment.CommentDto;
+import comment.CreateCommentDto;
 import anton.myshareit.item.dtoMappers.ItemMapper;
 import anton.myshareit.item.dtoMappers.UpdateItemDtoMapper;
 import anton.myshareit.item.dtoMappers.commentDtoMapper.CommentDtoMapper;

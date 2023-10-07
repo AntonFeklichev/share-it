@@ -4,8 +4,7 @@ import anton.myshareit.exceptions.BadRequestExceptions;
 import anton.myshareit.exceptions.ItemRequestNotFound;
 import anton.myshareit.exceptions.UserNotFoundException;
 import anton.myshareit.item.repository.ItemRepository;
-import anton.myshareit.request.dto.GetRequestDto;
-import anton.myshareit.request.dto.RequestDto;
+
 import anton.myshareit.request.entity.ItemRequest;
 import anton.myshareit.request.repository.RequestRepository;
 import anton.myshareit.request.requestMappers.CreateRequestMapper;
@@ -15,6 +14,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import request.GetRequestDto;
+import request.RequestDto;
 
 import java.time.LocalDateTime;
 import java.util.List;

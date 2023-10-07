@@ -1,6 +1,8 @@
 package anton.myshareit.user.service;
 
-import anton.myshareit.user.dto.UserDto;
+
+
+import user.UserDto;
 
 import java.util.List;
 

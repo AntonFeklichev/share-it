@@ -1,10 +1,11 @@
 package anton.myshareit.request.requestMappers;
 
 import anton.myshareit.item.dtoMappers.ItemMapper;
-import anton.myshareit.request.dto.GetRequestDto;
-import anton.myshareit.request.dto.RequestDto;
+
 import anton.myshareit.request.entity.ItemRequest;
 import anton.myshareit.user.dtoMappers.UserMapper;
+import request.GetRequestDto;
+import request.RequestDto;
 
 import java.util.stream.Collectors;
 

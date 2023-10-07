@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import user.client.UserClient;
-import user.dto.UserDto;
+import user.UserDto;
 
 
 @RestController

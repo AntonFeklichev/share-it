@@ -4,8 +4,8 @@ import item.*;
 import item.CreateItemDto;
 import item.CreateItemResponseDto;
 import item.UpdateItemDto;
-import item.comment.CommentDto;
-import item.comment.CreateCommentDto;
+import comment.CommentDto;
+import comment.CreateCommentDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
