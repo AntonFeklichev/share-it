@@ -17,7 +17,7 @@ public class RequestClient extends BaseClient {
     private static final String API_PREFIX = "/requests";
 
     @Autowired
-    public RequestClient(@Value("${my-share-it.sever.URL}") String serverUrl, RestTemplateBuilder builder) {
+    public RequestClient(@Value("${my-share-it.server.URL}") String serverUrl, RestTemplateBuilder builder) {
         super(
                 builder
                         .uriTemplateHandler(new DefaultUriBuilderFactory(serverUrl + API_PREFIX))

@@ -12,11 +12,21 @@ services:
     command: -p 5433
 
   server:
-    build: .
+    build: server
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5433/postgres
 
     ports:
+      - '8081'
+    depends_on:
+      - postgres
+
+  gateway:
+    build: gateway
+    environment:
+      MY_SHARE_IT_SERVER_URL: http://server:8081
+
+    ports:
       - '8080:8080'
-    depends_on: 
-      - postgres 
+    depends_on:
+      - server
