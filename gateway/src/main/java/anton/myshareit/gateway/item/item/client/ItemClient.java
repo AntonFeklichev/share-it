@@ -1,6 +1,6 @@
-package item.client;
+package anton.myshareit.gateway.item.item.client;
 
-import client.BaseClient;
+import anton.myshareit.gateway.client.client.BaseClient;
 import comment.CreateCommentDto;
 
 import item.CreateItemDto;

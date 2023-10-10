@@ -1,4 +1,4 @@
-package request.controller;
+package anton.myshareit.gateway.request.request.controller;
 
 
 import jakarta.validation.Valid;
@@ -10,13 +10,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import request.RequestDto;
-import request.client.RequestClient;
+import anton.myshareit.gateway.request.request.client.RequestClient;
 
 import static constants.Constants.DEFAULT_PAGE_SIZE;
 import static constants.Constants.X_SHARER_USER_ID;
 
 @RestController
-@RequestMapping(name = "/requests")
+@RequestMapping(path = "/requests")
 @Slf4j
 @Validated
 @RequiredArgsConstructor

@@ -1,8 +1,8 @@
-package booking.client;
+package anton.myshareit.gateway.booking.booking.client;
 
 import booking.BookingStatus;
 import booking.CreateBookingDto;
-import client.BaseClient;
+import anton.myshareit.gateway.client.client.BaseClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;

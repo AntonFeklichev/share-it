@@ -1,6 +1,6 @@
-package user.client;
+package anton.myshareit.gateway.user.user.client;
 
-import client.BaseClient;
+import anton.myshareit.gateway.client.client.BaseClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;

@@ -1,8 +1,8 @@
-package item.controller;
+package anton.myshareit.gateway.item.item.controller;
 
 import comment.CreateCommentDto;
 import item.CreateItemDto;
-import item.client.ItemClient;
+import anton.myshareit.gateway.item.item.client.ItemClient;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;

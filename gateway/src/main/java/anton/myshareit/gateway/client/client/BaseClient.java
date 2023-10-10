@@ -1,4 +1,4 @@
-package client;
+package anton.myshareit.gateway.client.client;
 
 import org.springframework.http.*;
 import org.springframework.lang.Nullable;

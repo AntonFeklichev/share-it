@@ -1,9 +1,8 @@
-package booking.controller;
+package anton.myshareit.gateway.booking.booking.controller;
 
-import booking.BookingDto;
+import anton.myshareit.gateway.booking.booking.client.BookingClient;
 import booking.BookingStatus;
 import booking.CreateBookingDto;
-import booking.client.BookingClient;
 import jakarta.validation.Valid;
 import jakarta.validation.ValidationException;
 import jakarta.validation.constraints.Positive;
@@ -14,13 +13,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 import static constants.Constants.DEFAULT_PAGE_SIZE;
 import static constants.Constants.X_SHARER_USER_ID;
 
 @RestController
-@RequestMapping(name = "/bookings")
+@RequestMapping(path = "/bookings")
 @Validated
 @Slf4j
 public class BookingController {
@@ -32,7 +29,7 @@ public class BookingController {
         this.bookingClient = bookingClient;
     }
 
-
+    @PostMapping
     public ResponseEntity<Object> addBooking(@Valid
                                              @RequestBody
                                              CreateBookingDto createBookingDto,
@@ -92,17 +89,17 @@ public class BookingController {
 
     @GetMapping("/owner")
     public ResponseEntity<Object> getBookingListByOwner(@RequestParam(defaultValue = "ALL", name = "state")
-                                                  String stateString,
-                                                  @RequestHeader(name = X_SHARER_USER_ID)
-                                                  Long userId,
-                                                  @RequestParam(name = "from",
-                                                          defaultValue = "0")
-                                                  @PositiveOrZero
-                                                  Integer from,
-                                                  @RequestParam(name = "size",
-                                                          defaultValue = DEFAULT_PAGE_SIZE)
-                                                  @Positive
-                                                  Integer size) {
+                                                        String stateString,
+                                                        @RequestHeader(name = X_SHARER_USER_ID)
+                                                        Long userId,
+                                                        @RequestParam(name = "from",
+                                                                defaultValue = "0")
+                                                        @PositiveOrZero
+                                                        Integer from,
+                                                        @RequestParam(name = "size",
+                                                                defaultValue = DEFAULT_PAGE_SIZE)
+                                                        @Positive
+                                                        Integer size) {
         log.info("Get bookingList by owner id {} by parameters: state = {}, from = {}, size = {}",
                 userId, stateString, from, size);
         try {

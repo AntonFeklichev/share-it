@@ -1,13 +1,13 @@
-package user.controller;
+package anton.myshareit.gateway.user.user.controller;
 
 
+import anton.myshareit.gateway.user.user.client.UserClient;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import user.client.UserClient;
 import user.UserDto;
 
 
