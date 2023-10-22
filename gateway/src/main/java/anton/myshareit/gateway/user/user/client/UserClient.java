@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.util.DefaultUriBuilderFactory;
 import user.UserDto;
 
+import java.util.Map;
+
 @Component
 public class UserClient extends BaseClient {
 
@@ -31,12 +33,14 @@ public class UserClient extends BaseClient {
 
 
     public ResponseEntity<Object> findUserById(Long userId) {
-        return get("/{userId}", userId, null);
+        Map<String, Object> parameters = Map.of("userId", userId);
+        return get("/{userId}", null, parameters);
     }
 
 
     public ResponseEntity<Object> updateUser(String userDto, Long userId) {
-        return patch("/{userId}", userId, null, userDto);
+        Map<String, Object> parameters = Map.of("userId", userId);
+        return patch("/{userId}", null, parameters, userDto);
     }
 
     public ResponseEntity<Object> getAllUsers() {
@@ -45,7 +49,8 @@ public class UserClient extends BaseClient {
 
 
     public void deleteUser(Long userId) {
-        delete("/{userId}", userId, null);
+        Map<String, Object> parameters = Map.of("userId", userId);
+        delete("/{userId}", null, parameters);
 
         ResponseEntity.noContent().build();
 
