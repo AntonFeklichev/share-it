@@ -4,10 +4,10 @@ Cервис для шеринга вещей учебный проект Янд�
 
 В проекте использовал: 
 - Spring Boot
-- RESTful API 
+- RESTful CRUD API 
 - Maven 
 - JPA and Hibernate
-- PostgreSQL CRUD API
+- PostgreSQL
 - Docker
 - Lombok
 - JUnit
